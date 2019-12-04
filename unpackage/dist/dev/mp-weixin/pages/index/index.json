@@ -1,0 +1,10 @@
+{
+  "navigationBarTitleText": "首页",
+  "usingComponents": {
+    "swiper-image": "/components/common/swiperImage",
+    "menus-nav": "/components/common/menusNav",
+    "divider": "/components/common/divider",
+    "three-adv": "/components/index/threeAdv",
+    "card": "/components/common/card"
+  }
+}

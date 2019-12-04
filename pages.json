@@ -1,16 +1,138 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages	
+
+
 		{
 			"path": "pages/index/index",
 			"style": {
+				"navigationBarTitleText": "首页",
+				"app-plus": {
+					"scrollIndicator": "none",
+					"titleNView": {
+						"searchInput": {
+							"align": "left",
+							"backgroundColor": "#f7f7f7",
+							"borderRadius": "4px",
+							"disabled": true,
+							"placeholder": "智能积木 越野四驱车",
+							"placeholderColor": "#c7c7c7"
+						},
+						"buttons": [{
+								"color": "#8c8c8c",
+								"colorPressed": "FD6801",
+								"float": "left",
+								"fontSize": "22px",
+								"fontSrc": "/static/font/iconfont.ttf",
+								"text": "\ue655"
+							},
+							{
+								"color": "#8c8c8c",
+								"colorPressed": "FD6801",
+								"float": "right",
+								"fontSize": "22px",
+								"fontSrc": "/static/font/iconfont.ttf",
+								"text": "\ue8d9"
+							}
+						]
+					}
+				}
+			}
+		},
+		{
+			"path": "pages/classify/classify",
+			"style": {
 				"navigationBarTitleText": "uni-app"
 			}
+		},
+		{
+			"path": "pages/cart/cart",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationBarTitleText": "uni-app",
+				"navigationStyle": "custom",
+				"h5": {
+					"titleNView": false
+				},
+				"app-plus": {
+					"titleNView": false,
+					"bounce": "none"
+				}
+			}
+		},
+		{
+			"path": "pages/homePage/homePage",
+			"style": {
+				"navigationBarTitleText": "授权登陆"
+			}
+		},
+		{
+			"path": "pages/login/login",
+			"style": {
+				"app-plus":{
+					"bounce":"none",
+					"scrollIndicator":"none",
+					"titleNView":false		
+				},
+				"navigationBarTitleText": "uni-app",
+				"navigationStyle": "custom",
+				"h5": {
+					"titleNView": false
+				}
+			}
 		}
-	],
+	    ,{
+            "path" : "pages/setup/setup",
+            "style" : {
+				"navigationBarTitleText":"设置"
+			}
+        }
+        ,{
+            "path" : "pages/order/order",
+            "style" : {}
+        }
+    ],
+	//全局样式
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#F8F8F8",
-		"backgroundColor": "#F8F8F8"
+		"navigationBarTitleText": "中南uni-app模板",
+		"navigationBarBackgroundColor": "#FFFFFF",
+		"backgroundColor": "#FFFFFF" //针对小程序
+	},
+	//底部导航
+	"tabBar": {
+		"color": "#B1B1B1",
+		"selectedColor": "#FD6801",
+		"borderStyle": "black",
+		"backgroundColor": "#FFFFFF",
+		"list": [{
+				"pagePath": "pages/index/index",
+				"iconPath": "static/tabbar/index.png",
+				"selectedIconPath": "static/tabbar/index-active.png",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/classify/classify",
+				"iconPath": "static/tabbar/classify.png",
+				"selectedIconPath": "static/tabbar/classify-active.png",
+				"text": "分类"
+			},
+			{
+				"pagePath": "pages/cart/cart",
+				"iconPath": "static/tabbar/cart.png",
+				"selectedIconPath": "static/tabbar/cart-active.png",
+				"text": "购物车"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"iconPath": "static/tabbar/mine.png",
+				"selectedIconPath": "static/tabbar/mine-active.png",
+				"text": "我的"
+			}
+		]
 	}
 }
