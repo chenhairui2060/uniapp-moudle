@@ -13,7 +13,6 @@ export default {
 			let userInfo = uni.getStorageSync('userInfo')
 			if (userInfo) {
 				userInfo = JSON.parse(userInfo)
-				
 				state.userInfo = userInfo
 				state.token = userInfo.token
 				state.loginStatus = true

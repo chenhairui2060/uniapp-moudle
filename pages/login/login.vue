@@ -29,7 +29,7 @@
 			/>
 			<view @click="submit" hover-class="loginbtn" class="d-flex a-center j-center py-2 w-100 main-bg-color text-white rounded mb-4">登陆</view>
 			<label class="checkbox d-flex a-center">
-				<checkbox  :checked="checked" @click="checked=!checked" style="transform:scale(0.7)" />
+				<checkbox :checked="checked" @click="checked = !checked" style="transform:scale(0.7)" />
 				<text class="text-light-muted font">已阅读并同意xxx协议</text>
 			</label>
 		</view>
@@ -38,6 +38,7 @@
 
 <script>
 import uniStatusBar from '@/components/uni-ui/uni-status-bar/uni-status-bar.vue';
+import { mapMutations } from 'vuex';
 export default {
 	name: 'login',
 	components: {
@@ -47,7 +48,7 @@ export default {
 		return {
 			username: '',
 			password: '',
-			checked:true,
+			checked: true,
 			focusClass: {
 				username: false,
 				password: false
@@ -56,13 +57,13 @@ export default {
 			rules: {
 				username: [
 					{
-						rule: /^[a-zA-Z]\w{5,17}$/,
-						msg: '以字母开头，长度在6~18之间，只能包含字母、数字和下划线'
+						rule: /^[a-zA-Z]\w{4,17}$/,
+						msg: '以字母开头，长度在5~18之间，只能包含字母、数字和下划线'
 					}
 				],
 				password: [
 					{
-						rule: /^.{5,20}$/,
+						rule: /^.{2,20}$/,
 						msg: '长度为3-20的所有字符'
 					}
 				]
@@ -75,19 +76,38 @@ export default {
 		// #endif
 	},
 	methods: {
-		submit() {
+		...mapMutations(['login']),
+		async submit() {
 			// this.rules['username'].forEach((v)=>{
 			// 	if(!v.rule.test(this.username)){
 			// 		console.log(v.msg)
 			// 	}
 			// })
-			console.log(this.checked)
-			if(!this.validate('username')) return;
-			if(!this.validate('password')) return;
-			console.log('提交成功')
+			if (!this.validate('username')) return;
+			if (!this.validate('password')) return;
+			let [err, res] = await this.$axios.post('/api/login', {
+				username: this.username,
+				password: this.password
+			});
+			if (res.statusCode == 200) {
+				this.login(res.data.data);
+				uni.showToast({
+					title: '登录成功',
+					icon: 'none'
+				});
+				uni.navigateBack({
+					delta: 1
+				});
+			} else {
+				uni.showToast({
+					title: res.msg,
+					icon: 'none'
+				});
+			}
+			console.log(err, res);
 		},
-		goBack(){
-			uni.navigateBack()
+		goBack() {
+			uni.navigateBack();
 		},
 		//表单验证
 		validate(key) {
@@ -108,12 +128,11 @@ export default {
 			return check;
 		},
 		focus(key) {
-			console.log(this.focusClass[key]);
-
+			// console.log(this.focusClass[key]);
 			this.focusClass[key] = true;
 		},
 		blur(key) {
-			console.log('失去焦点', this.focusClass[key]);
+			// console.log('失去焦点', this.focusClass[key]);
 			this.focusClass[key] = false;
 		}
 	}

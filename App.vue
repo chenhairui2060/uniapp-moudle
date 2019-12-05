@@ -57,9 +57,12 @@ export default {
 			});
 		}
 		// #endif
+		//初始化登陆状态
+		this.$store.commit('initUser');
 	},
 	onShow: function() {
 		console.log('App Show');
+		console.log(this.$store.state.user)
 		
 	},
 	onHide: function() {

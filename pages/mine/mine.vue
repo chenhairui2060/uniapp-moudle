@@ -5,8 +5,8 @@
 			<view class="iconfont icon-xiaoxi1 text-white position-absolute" style=" top:20upx;right: 20upx;font-size: 50upx; z-index: 99;"></view>
 			<image src="/static/images/bg.jpg" style="height: 320upx;width: 100%;z-index: 1;" class="position-absolute"></image>
 			<view class="d-flex a-center position-absolute" style="z-index: 99;width: 100%;">
-				<image src="/static/images/demo/demo6.jpg" class="rounded-circle border-light ml-4" style="height: 145upx;width: 145upx; border:5upx solid ;"></image>
-				<navigator url="../login/login"><text class="ml-2 text-white font-md">测试昵称</text></navigator>
+				<image :src="loginStatus?userInfo.avatar:'/static/images/demo/demo6.jpg'" class="rounded-circle border-light ml-4" style="height: 145upx;width: 145upx; border:5upx solid ;"></image>
+				<text class="ml-2 text-white font-md" @click="openLogin">{{loginStatus ? userInfo.nickname : '登录/注册'}}</text>
 				<view
 					class="d-flex a-center j-center"
 					style="height: 70upx;
@@ -15,7 +15,7 @@
 				right: 0;
 				width: 280upx;background: #ffd43f;color: #d25b0a;border-top-left-radius:40upx; border-bottom-left-radius: 40upx;"
 				>
-					会员积分1.99
+					会员积分 0.00
 				</view>
 			</view>
 		</view>
@@ -23,7 +23,7 @@
 		<card>
 			<view slot="title" class="d-flex j-sb a-center">
 				<text>我的订单</text>
-				<view class="text-secondary" @click="navigate('order',true)">
+				<view class="text-secondary" @click="navigate('order', true)">
 					全部订单
 					<text class="iconfont icon-changyongtubiao-xianxingdaochu-zhuanqu-1 font-md"></text>
 				</view>
@@ -60,6 +60,7 @@
 import card from '@/components/common/card.vue';
 import divider from '@/components/common/divider.vue';
 import uniListItem from '@/components/uni-ui/uni-list-item/uni-list-item.vue';
+import { mapState } from 'vuex';
 export default {
 	components: {
 		card,
@@ -116,6 +117,15 @@ export default {
 			]
 		};
 	},
+	computed: {
+		...mapState({
+			loginStatus: state => state.user.loginStatus,
+			userInfo: state => state.user.userInfo
+		})
+	},
+	mounted() {
+		console.log(this.loginStatus)
+	},
 	methods: {
 		navigate(path, check = false) {
 			if (!path) return;
@@ -126,6 +136,11 @@ export default {
 			}
 			uni.navigateTo({
 				url: `/pages/${path}/${path}`
+			});
+		},
+		openLogin() {
+			uni.navigateTo({
+				url: '../login/login'
 			});
 		}
 	}

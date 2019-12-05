@@ -47,7 +47,7 @@
 	}
 
 	.uni-badge.uni-badge-inverted {
-		padding: 0 5px 0 0;
+		padding: 0 5upx 0 0;
 		color: #999;
 		background-color: transparent
 	}

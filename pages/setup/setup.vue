@@ -15,7 +15,7 @@
 		<view class="p-2">
 			<button class="bg-white font-md" style="height: 90upx;line-height: 90upx;">退出登陆</button>
 		</view>
-		<button type="primary" @click="showMulLinkageThreePicker">选择城市</button>
+	<!-- 	<button type="primary" @click="showMulLinkageThreePicker">选择城市</button> -->
 		<mpvue-city-picker :themeColor="themeColor" ref="mpvueCityPicker" :pickerValueDefault="cityPickerValueDefault"
 		 @onCancel="onCancel" @onConfirm="onConfirm"></mpvue-city-picker>
 	</view>

@@ -1,1 +1,1 @@
-<view>全部订单</view>
+<view>全部订单<uni-badge vue-id="1" text="45" size="small" type="warning" bind:__l="__l"></uni-badge></view>

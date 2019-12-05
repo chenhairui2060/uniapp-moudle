@@ -9,7 +9,6 @@ Vue.config.productionTip = false
 import config from "./common/lib/config.js"
 Vue.prototype.$config = config
 App.mpType = 'app'
-console.log(store.state.user.loginStatus)
 // 权限跳转
 Vue.prototype.navigateTo = (options)=>{
 	// 判断用户是否登录
@@ -24,7 +23,9 @@ Vue.prototype.navigateTo = (options)=>{
 	}
 	uni.navigateTo(options);
 }
-
+// 引入request库
+import $axios from '@/common/lib/request.js';
+Vue.prototype.$axios = $axios
 
 const app = new Vue({
 	...App,

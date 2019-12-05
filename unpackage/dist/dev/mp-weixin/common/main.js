@@ -16,28 +16,29 @@ var _index = _interopRequireDefault(__webpack_require__(/*! ./store/index.js */ 
 
 
 
-var _config = _interopRequireDefault(__webpack_require__(/*! ./common/lib/config.js */ 18));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}_vue.default.prototype.$store = _index.default;_vue.default.config.productionTip = false; //挂载全局方法
-_vue.default.prototype.$config = _config.default;
-_App.default.mpType = 'app';
-console.log(_index.default.state.user.loginStatus);
-// 权限跳转
-_vue.default.prototype.navigateTo = function (options) {
-  // 判断用户是否登录
-  if (!_index.default.state.user.loginStatus) {
-    uni.showToast({
-      title: '请先登录',
-      icon: 'none' });
-
-    return uni.navigateTo({
-      url: '/pages/login/login' });
-
-  }
-  uni.navigateTo(options);
-};
+var _config = _interopRequireDefault(__webpack_require__(/*! ./common/lib/config.js */ 18));
 
 
-var app = new _vue.default(_objectSpread({},
-_App.default, {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+var _request = _interopRequireDefault(__webpack_require__(/*! @/common/lib/request.js */ 19));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}function _objectSpread(target) {for (var i = 1; i < arguments.length; i++) {var source = arguments[i] != null ? arguments[i] : {};var ownKeys = Object.keys(source);if (typeof Object.getOwnPropertySymbols === 'function') {ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) {return Object.getOwnPropertyDescriptor(source, sym).enumerable;}));}ownKeys.forEach(function (key) {_defineProperty(target, key, source[key]);});}return target;}function _defineProperty(obj, key, value) {if (key in obj) {Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true });} else {obj[key] = value;}return obj;}_vue.default.prototype.$store = _index.default;_vue.default.config.productionTip = false; //挂载全局方法
+_vue.default.prototype.$config = _config.default;_App.default.mpType = 'app'; // 权限跳转
+_vue.default.prototype.navigateTo = function (options) {// 判断用户是否登录
+  if (!_index.default.state.user.loginStatus) {uni.showToast({ title: '请先登录', icon: 'none' });return uni.navigateTo({ url: '/pages/login/login' });}uni.navigateTo(options);}; // 引入request库
+_vue.default.prototype.$axios = _request.default;var app = new _vue.default(_objectSpread({}, _App.default, {
   config: _config.default,
   store: _index.default }));
 
@@ -173,9 +174,12 @@ __webpack_require__.r(__webpack_exports__);
 
     }
 
+    //初始化登陆状态
+    this.$store.commit('initUser');
   },
   onShow: function onShow() {
     console.log('App Show');
+    console.log(this.$store.state.user);
 
   },
   onHide: function onHide() {
